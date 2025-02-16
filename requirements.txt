@@ -1,0 +1,9 @@
+jupyter
+pandas
+numpy
+networkx
+matplotlib
+SQLAlchemy
+pymysql
+pytest
+Faker
