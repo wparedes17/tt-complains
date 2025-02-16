@@ -1,5 +1,5 @@
 # db/db_manager.py
-from typing import Generator
+from typing import Generator, Any
 from logger.logger import logger
 from contextlib import contextmanager
 from sqlalchemy import create_engine
@@ -84,6 +84,10 @@ class MySQLManager:
     def get_engine(self):
         """Get the SQLAlchemy engine"""
         return self._engine
+
+    def get_all(self, table: Any) -> list:
+        with self.session_scope() as session:
+            return session.query(table).all()
 
     def close(self):
         """Close the database connection"""
