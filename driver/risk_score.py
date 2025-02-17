@@ -42,6 +42,7 @@ def calculate_trouble_score(
         unloading_difficulty: UnloadingDifficult,
         driver_experience: float,
         distance: float,
+        omit_unloading: bool = False,
         base_risk: float = 0.1
 ) -> float:
     """
@@ -54,6 +55,7 @@ def calculate_trouble_score(
         unloading_difficulty: Difficulty level of unloading
         driver_experience: Years of experience (used for risk reduction)
         distance: Trip distance in km (longer trips increase risk)
+        omit_unloading: Whether to omit unloading difficulty (default False)
         base_risk: Base risk score (default 0.1)
 
     Returns:
@@ -68,9 +70,10 @@ def calculate_trouble_score(
     condition_adjusted = base_class_risk * risk_factors.HIGHWAY_CONDITION_MULT[highway_condition]
 
     # Apply difficulty multipliers
+    unloading_factor = 1.0 if omit_unloading else risk_factors.UNLOADING_DIFFICULTY_MULT[unloading_difficulty]
     difficulty_adjusted = condition_adjusted * (
             risk_factors.HIGHWAY_DIFFICULTY_MULT[highway_difficulty] *
-            risk_factors.UNLOADING_DIFFICULTY_MULT[unloading_difficulty]
+            unloading_factor
     )
 
     # Experience reduction factor (exponential decay)

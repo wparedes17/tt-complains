@@ -8,3 +8,9 @@ pymysql
 pytest
 Faker
 scipy
+tenacity
+openai
+python-dotenv
+pydantic
+gensim
+nltk

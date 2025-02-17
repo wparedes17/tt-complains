@@ -1,8 +1,8 @@
+import random
 from faker import Faker
 from typing import List, Optional, Any
 from db.db_manager import MySQLManager
 from logger.logger import logger
-from abc import ABC, abstractmethod
 
 class Populator:
     def __init__(self, db_manager: MySQLManager, table: Any, seed: Optional[int] = None):
@@ -18,8 +18,10 @@ class Populator:
         self.faker = Faker(['en_US', 'es_ES'])
         if seed is not None:
             Faker.seed(seed)
+            random.seed(seed)
 
-    def generate_records_by_number(self, number_records: int):
+
+    def generate_records_by_number(self, number_records: int) -> list:
         if number_records < 0:
             logger.error("Number of records must be at least 1 or list_record should be declared")
             raise ValueError("Number of records must be at least 1 or list_record should be declared")

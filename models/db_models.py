@@ -65,9 +65,9 @@ class TrailerDriver(Base):
     age = Column(Integer, nullable=False)
     sex = Column(String(1), nullable=False)  # 'M' or 'F'
     location_id = Column(Integer, ForeignKey('nodes.node_id'), nullable=False)
-    routes = Column(String(500)),
+    route_list = Column(String(500))
     number_routes = Column(Integer, default=0)
-    trips = Column(String(500))
+    trip_list = Column(String(1500))
     number_trips = Column(Integer, default=0)
     number_complains = Column(Integer, default=0)
     most_common_complain_topic = Column(Integer, ForeignKey('topics.topic_id'))
