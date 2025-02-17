@@ -2,6 +2,8 @@ from faker import Faker
 from typing import List, Optional, Any
 from db.db_manager import MySQLManager
 from logger.logger import logger
+from abc import ABC, abstractmethod
+
 class Populator:
     def __init__(self, db_manager: MySQLManager, table: Any, seed: Optional[int] = None):
         """
@@ -36,6 +38,8 @@ class Populator:
 
         with self.db_manager.session_scope() as session:
             session.add_all(list_records)
+            logger.info(f"Successfully inserted {len(list_records)} records")
+
 
 
 

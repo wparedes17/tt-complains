@@ -87,7 +87,11 @@ class MySQLManager:
 
     def get_all(self, table: Any) -> list:
         with self.session_scope() as session:
-            return session.query(table).all()
+            results = session.query(table).all()
+            return [self._to_dict(obj) for obj in results]
+
+    def _to_dict(self, obj):
+        return {column.name: getattr(obj, column.name) for column in obj.__table__.columns}
 
     def close(self):
         """Close the database connection"""

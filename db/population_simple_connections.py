@@ -12,7 +12,7 @@ class SimpleConnectionPopulator(Populator):
             highway_classification=random.choice(list(HighwayClassification)),
             highway_condition=random.choice(list(HighwayCondition)),
             highway_difficult=random.choice(list(HighwayDifficult)),
-            assault_risk=random.uniform(0,1)
+            assault_risk=random.uniform(0,1)/10.0
         )
 
         return record

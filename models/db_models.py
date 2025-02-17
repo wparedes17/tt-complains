@@ -67,6 +67,8 @@ class TrailerDriver(Base):
     location_id = Column(Integer, ForeignKey('nodes.node_id'), nullable=False)
     routes = Column(String(500)),
     number_routes = Column(Integer, default=0)
+    trips = Column(String(500))
+    number_trips = Column(Integer, default=0)
     number_complains = Column(Integer, default=0)
     most_common_complain_topic = Column(Integer, ForeignKey('topics.topic_id'))
     most_common_route = Column(Integer, ForeignKey('routes.route_id'))
@@ -85,7 +87,7 @@ class Complain(Base):
     comment = Column(String(5000))
     severity = Column(Integer, nullable=False)  # Scale from 1 to 5
 
-class Trip(Base):
+class Trips(Base):
     __tablename__ = 'trips'
     trip_id = Column(Integer, primary_key=True)
     driver_id = Column(Integer, ForeignKey('trailer_drivers.driver_id'), nullable=False)

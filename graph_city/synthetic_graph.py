@@ -103,7 +103,7 @@ class SyntheticGraph:
         """
         # Forward edge data
         # Random distance, price is directly proportional to distance
-        distance = random.randint(30, 100)
+        distance = random.randint(300, 1000)
         price = distance * KM_PRICE
 
         # Forward edge
